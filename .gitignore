@@ -1,2 +1,4 @@
 /greenvegcart-ui-backend/target/
 /greenvegcartauthserver/target
+.idea/**
+*.iml
