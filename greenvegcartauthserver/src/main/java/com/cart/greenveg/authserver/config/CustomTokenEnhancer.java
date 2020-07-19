@@ -18,12 +18,21 @@ public class CustomTokenEnhancer extends JwtAccessTokenConverter {
         if (user.getId() != null) {
             info.put("id", user.getId());
         }
-        if (user.getName() != null) {
-            info.put("name", user.getName());
-        }
-        if (user.getUsername() != null) {
-            info.put("userName", user.getUsername());
-        }
+//        if (user.getFirstName() != null) {
+//            info.put("fname", user.getFirstName());
+//        }
+//
+//        if (user.getFirstName() != null) {
+//            info.put("lname", user.getLastName());
+//        }
+//
+//        if (user.getFirstName() != null) {
+//            info.put("mname", user.getMiddleName());
+//        }
+//
+//        if (user.getUsername() != null) {
+//            info.put("userName", user.getUsername());
+//        }
         DefaultOAuth2AccessToken customAccessToken = new DefaultOAuth2AccessToken(accessToken);
         customAccessToken.setAdditionalInformation(info);
         return super.enhance(customAccessToken, authentication);

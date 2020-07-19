@@ -3,6 +3,7 @@ package com.cart.greenveg.authserver.config;
 import com.cart.greenveg.authserver.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -54,10 +55,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
         http.authorizeRequests().antMatchers("/api/token/**").permitAll()
-                //.antMatchers("/oauth/token/revokeById/**").permitAll()
+                .antMatchers("/api/user/**").permitAll()
                 .antMatchers("/tokens/**").permitAll()
                 .antMatchers("/oauth/**").permitAll()
-               // .antMatchers("/greenvegauth/oauth/**").permitAll()
                 .anyRequest().authenticated()
                 .and().cors()
                 .and().csrf().disable();

@@ -11,9 +11,11 @@ import java.util.stream.Collectors;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import com.cart.greenveg.authserver.model.CartUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
@@ -37,7 +39,6 @@ public class TokenController {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
-
 
     @RequestMapping(method = RequestMethod.POST, value = "/oauth/token/revokeById/{tokenId}")
     @ResponseBody

@@ -8,4 +8,19 @@ curl -XPOST -i -H "Authorization: Basic dGFsazJhbWFyZXN3YXJhbjp0YWxrMmFtYXJlc3dh
 
 -------------
 
--------
+-------  REGISTRAION----------------
+
+http://localhost:8090/greenvegauth/api/user/register
+
+{
+"id":"0"
+"firstName":"Monalisa",
+"lastName":"Maurya",
+"middleName":"",
+"mobile":"9733892132",
+"email":"monalisa@gmail.com",
+"password":"monalisa"
+}
+
+
+-----------
