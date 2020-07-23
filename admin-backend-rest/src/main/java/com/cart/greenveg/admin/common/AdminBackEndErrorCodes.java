@@ -6,7 +6,8 @@ public enum AdminBackEndErrorCodes {
     BAD_REQUEST("GVC_1002", "BAD Request"),
     INVALID_CATEGORY_ID("GVC_1004", "Category ID Not Found"),
     INVALID_SUB_CATEGORY_ID("GVC_1005", "SUB Category ID Not Found"),
-    INVALID_PRODUCT_CATEGORY_ID("GVC_1006", "Product Category ID Not Found")
+    INVALID_PRODUCT_CATEGORY_ID("GVC_1006", "Product Category ID Not Found"),
+    INVALID_PRODUCT_ID("GVC_1007", "Product ID Not Found")
 
 
 

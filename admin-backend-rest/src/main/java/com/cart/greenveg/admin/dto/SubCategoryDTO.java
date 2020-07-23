@@ -1,6 +1,8 @@
 package com.cart.greenveg.admin.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -21,10 +23,19 @@ public class SubCategoryDTO extends AuditModel implements Serializable {
     private String name;
 
     @ManyToOne
+    @JoinTable(name = "CATEGORY_SUBCATEGORY_MAPPING",
+            joinColumns = {@JoinColumn(name = "SUB_CATEGORY_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "CATEGORY_ID")}
+    )
     @JsonIgnore
     private CategoryDTO category;
 
-    @OneToMany(mappedBy = "subCategory", cascade = CascadeType.ALL)
+    @OneToMany(fetch=FetchType.LAZY)
+    @JoinTable(name="SUBCATEGORY_PRODUCTCATEGORY_MAPPING",
+            joinColumns={@JoinColumn(name="SUB_CATEGORY_ID")},
+            inverseJoinColumns={@JoinColumn(name="PRODUCT_CATEGORY_ID")}
+    )
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Set<ProductCategoryDTO> productCategories = new HashSet<>();
 
     public Long getId() {

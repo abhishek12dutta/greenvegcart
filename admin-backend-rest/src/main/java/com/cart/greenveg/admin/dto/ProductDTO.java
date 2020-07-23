@@ -1,6 +1,7 @@
 package com.cart.greenveg.admin.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -30,9 +31,20 @@ public class ProductDTO extends AuditModel implements Serializable {
     @Column(name = "sale_end_date", columnDefinition = "DATE")
     private LocalDate endsAt;
 
-    @ManyToOne
     @JsonIgnore
+    @ManyToOne
+    @JoinTable(name="PRODUCT_PRODUCTCATEGORY_MAPPING",
+            joinColumns={@JoinColumn(name="PRODUCT_ID")},
+            inverseJoinColumns={@JoinColumn(name="PRODUCT_CATEGORY_ID")}
+    )
     private ProductCategoryDTO productCategory;
+
+
+    @OneToOne(mappedBy = "product",cascade = CascadeType.ALL)
+    @JoinTable(name="PRODUCT_META_MAPPING",
+            joinColumns=@JoinColumn(name="PRODUCT_ID",unique=true),
+            inverseJoinColumns=@JoinColumn(name="PRODUCT_META_ID",unique=true))
+    private ProductMetaDTO productMeta;
 
     public Long getId() {
         return id;
@@ -122,11 +134,19 @@ public class ProductDTO extends AuditModel implements Serializable {
         this.endsAt = endsAt;
     }
 
-    public ProductCategoryDTO getProductCategoryDTO() {
+    public ProductMetaDTO getProductMeta() {
+        return productMeta;
+    }
+
+    public void setProductMeta(ProductMetaDTO productMeta) {
+        this.productMeta = productMeta;
+    }
+
+    public ProductCategoryDTO getProductCategory() {
         return productCategory;
     }
 
-    public void setProductCategoryDTO(ProductCategoryDTO productCategoryDTO) {
-        this.productCategory = productCategoryDTO;
+    public void setProductCategory(ProductCategoryDTO productCategory) {
+        this.productCategory = productCategory;
     }
 }

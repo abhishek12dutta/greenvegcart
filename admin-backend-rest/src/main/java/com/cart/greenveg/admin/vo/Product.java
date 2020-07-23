@@ -1,5 +1,6 @@
 package com.cart.greenveg.admin.vo;
 
+import com.cart.greenveg.admin.dto.ProductCategoryDTO;
 import com.cart.greenveg.admin.dto.ProductUnit;
 
 import javax.persistence.EnumType;
@@ -29,6 +30,25 @@ public class Product {
     private Date createdAt;
     private Date updatedAt;
 
+    private ProductMetaInfo productMetaInfo;
+
+    private ProductCategory productCategory;
+
+    public ProductMetaInfo getProductMetaInfo() {
+        return productMetaInfo;
+    }
+
+    public void setProductMetaInfo(ProductMetaInfo productMetaInfo) {
+        this.productMetaInfo = productMetaInfo;
+    }
+
+    public ProductCategory getProductCategory() {
+        return productCategory;
+    }
+
+    public void setProductCategory(ProductCategory productCategory) {
+        this.productCategory = productCategory;
+    }
 
     public Long getId() {
         return id;

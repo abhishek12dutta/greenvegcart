@@ -20,8 +20,11 @@ public class AdminBackendErrorHandler extends ResponseEntityExceptionHandler {
 
     private static final List<String> badRequests = Arrays.asList(AdminBackEndErrorCodes.BAD_REQUEST.getCode());
 
-    private static final List<String> notFoundRequests = Arrays.asList(AdminBackEndErrorCodes.INVALID_CATEGORY_ID.getCode(),
-            AdminBackEndErrorCodes.INVALID_SUB_CATEGORY_ID.getCode());
+    private static final List<String> notFoundRequests = Arrays.asList(
+            AdminBackEndErrorCodes.INVALID_CATEGORY_ID.getCode(),
+            AdminBackEndErrorCodes.INVALID_SUB_CATEGORY_ID.getCode(),
+            AdminBackEndErrorCodes.INVALID_PRODUCT_ID.getCode()
+    );
 
     @ExceptionHandler(AdminBackEndException.class)
     public ResponseEntity<AdminBackendError> customHandleNotFound(Exception ex, WebRequest request) {

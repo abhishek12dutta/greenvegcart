@@ -1,11 +1,7 @@
 package com.cart.greenveg.admin.mapper;
 
-import com.cart.greenveg.admin.dto.CategoryDTO;
-import com.cart.greenveg.admin.dto.ProductCategoryDTO;
-import com.cart.greenveg.admin.dto.SubCategoryDTO;
-import com.cart.greenveg.admin.vo.Category;
-import com.cart.greenveg.admin.vo.ProductCategory;
-import com.cart.greenveg.admin.vo.SubCategory;
+import com.cart.greenveg.admin.dto.*;
+import com.cart.greenveg.admin.vo.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -26,5 +22,16 @@ public class VoToEntityMapper {
 
     public ProductCategoryDTO mapProductCategory(ProductCategory productCategory) {
         return modelMapper.map(productCategory, ProductCategoryDTO.class);
+    }
+
+    public ProductDTO mapProductForAddRequest(Product product) {
+        product.setProductCategory(null);
+        product.setProductMetaInfo(null);
+        ProductDTO productDTO = modelMapper.map(product, ProductDTO.class);
+        return productDTO;
+    }
+
+    public ProductMetaDTO mapProductMetaDTO(ProductMetaInfo productMetaInfo) {
+        return modelMapper.map(productMetaInfo, ProductMetaDTO.class);
     }
 }

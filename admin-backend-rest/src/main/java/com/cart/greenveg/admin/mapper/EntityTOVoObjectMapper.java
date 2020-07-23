@@ -1,13 +1,14 @@
 package com.cart.greenveg.admin.mapper;
 
+import com.cart.greenveg.admin.dto.ProductDTO;
+import com.cart.greenveg.admin.dto.ProductMetaDTO;
 import com.cart.greenveg.admin.dto.SubCategoryDTO;
-import com.cart.greenveg.admin.vo.Category;
-import com.cart.greenveg.admin.vo.ProductCategory;
-import com.cart.greenveg.admin.vo.SubCategory;
+import com.cart.greenveg.admin.vo.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -53,4 +54,22 @@ public class EntityTOVoObjectMapper {
     }
 
 
+    public Product mapProduct(ProductDTO addedProduct) {
+        Product product = modelMapper.map(addedProduct, Product.class);
+        ProductMetaInfo productMetaInfo = modelMapper.map(addedProduct.getProductMeta(),ProductMetaInfo.class);
+        product.setProductMetaInfo(productMetaInfo);
+        return product;
+    }
+
+    public List<Product> mapProducts(List<ProductDTO> productDTOList) {
+        List<Product> productList = new ArrayList<>();
+        for(ProductDTO productDTO : productDTOList){
+            ProductCategory productCategory = mapProductCategory(productDTO.getProductCategory());
+            productDTO.setProductCategory(null);
+            Product product = mapProduct(productDTO);
+            product.setProductCategory(productCategory);
+            productList.add(product);
+        }
+        return productList;
+    }
 }
